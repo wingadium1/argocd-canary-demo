@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    path: lab-4/canary/
-    repoURL: 'https://github.com/AndreCbrera/argocd-labs.git'
+    path: canary/
+    repoURL: 'https://github.com/wingadium1/argocd-canary-demo.git'
     targetRevision: main
   destination:
     namespace: canary
