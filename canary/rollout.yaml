@@ -6,7 +6,7 @@ spec:
   strategy:
     canary:
       canaryService: rollouts-demo-canary # canary
-      stableService: rollouts-demo # stable
+      stableService: rollouts-demo-stable # stable
       trafficRouting:
         istio:
           virtualService:
