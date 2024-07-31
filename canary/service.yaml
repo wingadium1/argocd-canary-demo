@@ -23,3 +23,37 @@ spec:
     name: http
   selector:
     app: rollouts-demo
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rollouts-demo-vsvc
+spec:
+  gateways:
+  - rollouts-demo-gateway
+  hosts:
+  - rollouts-demo.io
+  http:
+  - name: primary
+    route:
+    - destination:
+        host: rollouts-demo
+      weight: 100
+    - destination:
+        host: rollouts-demo-canary
+      weight: 0
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: rollouts-demo-gateway
+spec:
+  selector:
+    istio: ingressgateway # 默认创建的 istio ingressgateway pod 有这个 Label
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"

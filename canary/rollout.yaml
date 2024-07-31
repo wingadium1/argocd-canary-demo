@@ -3,18 +3,25 @@ kind: Rollout
 metadata:
   name: rollouts-demo
 spec:
-  replicas: 5
   strategy:
     canary:
+      canaryService: rollouts-demo-canary # canary
+      stableService: rollouts-demo # stable
+      trafficRouting:
+        istio:
+          virtualService:
+            name: rollouts-demo-vsvc # Istio virtualService
+            routes:
+            - primary
       steps:
-        - setWeight: 20
-        - pause: {}
-        - setWeight: 40
-        - pause: {}
-        - setWeight: 60
-        - pause: {}
-        - setWeight: 80
-        - pause: {}
+      - setWeight: 20
+      - pause: {}         # Manual approve is required
+      - setWeight: 40
+      - pause: {duration: 60s}
+      - setWeight: 60
+      - pause: {duration: 60s}
+      - setWeight: 80
+      - pause: {duration: 60s}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
