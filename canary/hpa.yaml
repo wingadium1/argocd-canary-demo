@@ -3,8 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: hpa-rollout-demo
 spec:
-  maxReplicas: 6
-  minReplicas: 2
+  maxReplicas: 10
+  minReplicas: 4
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
