@@ -13,6 +13,18 @@ spec:
             name: rollouts-demo-vsvc # Istio virtualService
             routes:
             - primary
+      canaryMetadata:
+        annotations:
+          role: rollouts-demo-canary-workload
+        labels:
+          role: rollouts-demo-canary-workload
+
+      # metadata which will be attached to the stable pods
+      stableMetadata:
+        annotations:
+          role: rollouts-demo-stable-workload
+        labels:
+          role: rollouts-demo-stable-workload
       steps:
       - setWeight: 20
       - pause: {}         # Manual approve is required
