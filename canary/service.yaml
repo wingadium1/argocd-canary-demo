@@ -40,10 +40,10 @@ spec:
     route:
     - destination:
         host: rollouts-demo-stable
-      weight: 80
+      weight: 100
     - destination:
         host: rollouts-demo-canary
-      weight: 20
+      weight: 0
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
