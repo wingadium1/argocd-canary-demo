@@ -10,6 +10,7 @@ spec:
     name: http
   selector:
     app: rollouts-demo
+    role: rollouts-demo-stable-workload
 ---
 apiVersion: v1
 kind: Service
@@ -23,6 +24,7 @@ spec:
     name: http
   selector:
     app: rollouts-demo
+    role: rollouts-demo-canary-workload
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
